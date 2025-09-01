@@ -8,9 +8,8 @@ Note that it uses the `cpio` command which must be installed on your system to r
 
 ```rs
 fn main() {
-    let file = File::open("./Xcode_16.3.xip").unwrap();
-    let mut reader = BufReader::new(file);
-    let res = unxip(&mut reader, &PathBuf::from("./output"));
+    let mut file = File::open("./Xcode_16.3.xip").unwrap();
+    let res = unxip(&mut file, &PathBuf::from("./output"));
     if let Err(e) = res {
         eprintln!("{}", e);
     }
