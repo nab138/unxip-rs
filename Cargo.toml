@@ -7,7 +7,7 @@ license = "MPL-2.0"
 authors = ["Nicholas Sharp <nab@nabdev.me>"]
 repository = "https://github.com/nab138/unxip-rs"
 documentation = "https://docs.rs/unxip-rs"
-keywords = ["ios", "sideload"]
+keywords = ["apple", "xip", "archive", "extract"]
 readme = "README.md"
 
 [dependencies]
