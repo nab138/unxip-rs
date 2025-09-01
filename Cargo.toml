@@ -1,0 +1,16 @@
+[package]
+name = "unxip-rs"
+version = "0.1.0"
+edition = "2024"
+description = "Extract XIP Archives"
+license = "MPL-2.0"
+authors = ["Nicholas Sharp <nab@nabdev.me>"]
+repository = "https://github.com/nab138/unxip-rs"
+documentation = "https://docs.rs/unxip-rs"
+keywords = ["ios", "sideload"]
+readme = "../README.md"
+
+[dependencies]
+apple-xar = "0.20.0"
+thiserror = "2.0.16"
+xz2 = "0.1.7"
