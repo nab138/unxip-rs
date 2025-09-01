@@ -21,6 +21,18 @@ pub fn unxip<R: Read + Seek + Sized + std::fmt::Debug>(
     reader: &mut R,
     output_path: &Path,
 ) -> Result<(), UnxipError> {
+    if Command::new("cpio")
+        .arg("--version")
+        .stdout(Stdio::null())
+        .stderr(Stdio::null())
+        .status()
+        .is_err()
+    {
+        return Err(UnxipError::Misc(
+            "cpio command not found. Please install it.".to_string(),
+        ));
+    }
+
     let mut xip_reader = XipReader::new(reader)?;
 
     std::fs::create_dir_all(output_path).map_err(UnxipError::IoError)?;
