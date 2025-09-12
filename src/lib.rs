@@ -16,12 +16,13 @@ pub enum UnxipError {
     #[error("Miscellaneous Error: {0}")]
     Misc(String),
 }
-
 pub fn unxip<R: Read + Seek + Sized + std::fmt::Debug>(
     reader: &mut R,
     output_path: &Path,
+    cpio_path: Option<String>,
 ) -> Result<(), UnxipError> {
-    if Command::new("cpio")
+    let cpio_path = cpio_path.unwrap_or_else(|| "cpio".to_string());
+    if Command::new(&cpio_path)
         .arg("--version")
         .stdout(Stdio::null())
         .stderr(Stdio::null())
@@ -29,7 +30,7 @@ pub fn unxip<R: Read + Seek + Sized + std::fmt::Debug>(
         .is_err()
     {
         return Err(UnxipError::Misc(
-            "cpio command not found. Please install it.".to_string(),
+            "cpio not found or incompatible".to_string(),
         ));
     }
 
@@ -37,7 +38,7 @@ pub fn unxip<R: Read + Seek + Sized + std::fmt::Debug>(
 
     std::fs::create_dir_all(output_path).map_err(UnxipError::IoError)?;
 
-    let mut child = Command::new("cpio")
+    let mut child = Command::new(&cpio_path)
         .arg("-idm")
         .current_dir(output_path)
         .stdin(Stdio::piped())

@@ -2,15 +2,14 @@
 
 A library for extracting .xip files, written in Rust.
 
-Note that it uses the `cpio` command which must be installed on your system to run this crate.
+Note that it uses the `cpio` command. You can specify a custom path to `cpio` if needed. Many cpio extractors have been tested and only GNU cpio works.
 
 ## Usage
 
 ```rs
 fn main() {
-    let file = File::open("./Xcode_16.3.xip").unwrap();
-    let mut reader = BufReader::new(file);
-    let res = unxip(&mut reader, &PathBuf::from("./output"));
+    let mut file = File::open("./Xcode_16.3.xip").unwrap();
+    let res = unxip(&mut file, &PathBuf::from("./output"), None /* Uses "cpio" from PATH */);
     if let Err(e) = res {
         eprintln!("{}", e);
     }

@@ -1,3 +1,5 @@
 *.xip
 target
 output
+*.app
+example
