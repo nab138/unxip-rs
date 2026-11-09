@@ -1,7 +1,7 @@
 use crate::UnxipError;
 use apple_xar::reader::XarReader;
+use liblzma::read::XzDecoder;
 use std::io::{self, Cursor, Read, Seek, SeekFrom};
-use xz2::read::XzDecoder;
 
 const PBZX_MAGIC: &[u8] = b"\x70\x62\x7a\x78";
 const LZMA_MAGIC: &[u8] = b"\xfd\x37\x7a\x58\x5a\x00";

@@ -1,6 +1,6 @@
 [package]
 name = "unxip-rs"
-version = "0.1.1"
+version = "0.1.2"
 edition = "2024"
 description = "Extract XIP Archives"
 license = "MPL-2.0"
@@ -11,6 +11,6 @@ keywords = ["apple", "xip", "archive", "extract"]
 readme = "README.md"
 
 [dependencies]
-apple-xar = "0.20.0"
+apple-xar = { package = "isideload-apple-xar", version = "0.20.5"}
+liblzma = "0.4.6"
 thiserror = "2.0.16"
-xz2 = "0.1.7"
